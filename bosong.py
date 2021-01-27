@@ -30,7 +30,7 @@ def aug_normal(defect_img_path,normal_img_path,transform):
             defect_name = random.choice(defect_img_list)
             defect_path=osp.join(defect_img_path,defect_name)
             defect_image = cv2.imread(defect_path)
-            defect_image = transform(image=defect_image)['image']
+            defect_image = transform(image=defect_image)['image'] 
             label = defect_name.split('.jpg')[0].split('_')[-1]
             defect_h, defect_w = defect_image.shape[0], defect_image.shape[1]
             # print(label)
