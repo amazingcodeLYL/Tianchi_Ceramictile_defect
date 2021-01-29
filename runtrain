@@ -1,0 +1,4 @@
+ python tools/train.py guangdong/workspace/configs/cascade_rcnn/cascade_rcnn_r50_fpn_20e_coco.py
+
+ 生成json
+python demo/image_demo.py guangdong/workspace/configs/cascade_rcnn/cascade_rcnn_r50_fpn_20e_coco.py result_weight/cam1/epoch_20.pth

@@ -177,6 +177,7 @@ def main():
         cfg,
         distributed=distributed,
         validate=(not args.no_validate),
+        # validate=False,
         timestamp=timestamp,
         meta=meta)
 

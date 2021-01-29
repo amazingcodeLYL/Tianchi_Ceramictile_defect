@@ -9,6 +9,6 @@ log_config = dict(
 # yapf:enable
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-load_from = None
-resume_from = '/home/xiongpan/code/mmdetection-master/pretrain-model/cascade_rcnn_r50_fpn_20e_coco_bbox_mAP-0.41_20200504_175131-e9872a90.pth'
-workflow = [('train', 1)]
+load_from =  '/home/dell/桌面/guangdong/faster_rcnn_r50_fpn_1x_coco_20200130-047c8118.pth'
+resume_from =None
+workflow = [('train', 5)]

@@ -157,10 +157,11 @@ async def async_inference_detector(model, img):
     result = await model.aforward_test(rescale=True, **data)
     return result
 
-
 def show_result_pyplot(model,
+                        result,
                        img,
-                       result,
+                        img_name,
+                        json_result,
                        score_thr=0.3,
                        fig_size=(15, 10),
                        title='result',
@@ -179,9 +180,11 @@ def show_result_pyplot(model,
     """
     if hasattr(model, 'module'):
         model = model.module
-    img = model.show_result(img, result, score_thr=score_thr, show=False)
-    plt.figure(figsize=fig_size)
-    plt.imshow(mmcv.bgr2rgb(img))
-    plt.title(title)
-    plt.tight_layout()
-    plt.show(block=block)
+    # img_name=img_name
+    # json_result=json_result
+    img= model.show_result(img,result, img_name=img_name, json_result=json_result,score_thr=score_thr, show=False)
+    # plt.figure(figsize=fig_size)
+    # plt.imshow(mmcv.bgr2rgb(img))
+    # plt.title(title)
+    # plt.tight_layout()
+    # plt.show(block=block)

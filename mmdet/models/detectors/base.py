@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
 from collections import OrderedDict
-
+import json
+import numpy
 import mmcv
 import numpy as np
 import torch
@@ -269,6 +270,8 @@ class BaseDetector(nn.Module, metaclass=ABCMeta):
     def show_result(self,
                     img,
                     result,
+                    img_name,
+                    json_result,
                     score_thr=0.3,
                     bbox_color='green',
                     text_color='green',
@@ -301,6 +304,8 @@ class BaseDetector(nn.Module, metaclass=ABCMeta):
         Returns:
             img (Tensor): Only if not `show` or `out_file`
         """
+        print("###########################")
+
         img = mmcv.imread(img)
         img = img.copy()
         if isinstance(result, tuple):
@@ -335,21 +340,35 @@ class BaseDetector(nn.Module, metaclass=ABCMeta):
         # if out_file specified, do not show image in window
         if out_file is not None:
             show = False
+###############################存写入json字段
+        for box,label in zip(bboxes,labels):
+            res = dict()
+            res["name"] = img_name
+            res["category"] = label+1
+            res["bbox"] = box[:4].astype(int).tolist()
+            res["score"] = box[4]
+            json_result.append(res)
+
+
+
+
+
         # draw bounding boxes
-        mmcv.imshow_det_bboxes(
-            img,
-            bboxes,
-            labels,
-            class_names=self.CLASSES,
-            score_thr=score_thr,
-            bbox_color=bbox_color,
-            text_color=text_color,
-            thickness=thickness,
-            font_scale=font_scale,
-            win_name=win_name,
-            show=show,
-            wait_time=wait_time,
-            out_file=out_file)
+        # mmcv.imshow_det_bboxes(
+        #     img,
+        #     bboxes,
+        #     labels,
+        #     class_names=self.CLASSES,
+        #     score_thr=score_thr,
+        #     bbox_color=bbox_color,
+        #     text_color=text_color,
+        #     thickness=thickness,
+        #     font_scale=font_scale,
+        #     win_name=win_name,
+        #     show=show,
+        #     wait_time=wait_time,
+        #     out_file=out_file)
 
         if not (show or out_file):
             return img
+
