@@ -8,3 +8,7 @@ baseline：https://github.com/chuliuT/Tianchi_Fabric_defects_detection
 
 权重文件：
 链接: https://pan.baidu.com/s/1oDxv20JwBmY5mNRofOQV9g  密码: 5gl2
+
+关于一些tianchi defect detection冠军开源方案：
+https://github.com/search?q=tianchi+defect+detection
+
